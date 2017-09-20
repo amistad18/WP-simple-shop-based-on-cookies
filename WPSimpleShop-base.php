@@ -10,7 +10,7 @@ License:     GPL v2 or later
 */
 
 // Make sure we don't expose any info if called directly
-if ( !function_exists( 'add_action' ) ) {
+if( !function_exists( 'add_action' ) ){
 	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
 	exit;
 }
@@ -18,7 +18,7 @@ if ( !function_exists( 'add_action' ) ) {
 /**
  * Main plugin class.
  */
-if ( !class_exists( 'WPSimpleShop' ) ) {
+if( !class_exists( 'WPSimpleShop' ) ){
 
 	class WPSimpleShop {
 
@@ -43,7 +43,7 @@ if ( !class_exists( 'WPSimpleShop' ) ) {
 		*/
 		public static $taxonomy_slug = 'rodzaj';
 
-		public function __construct() {
+		public function __construct(){
 			// creata custom post type
 			add_action( 'init', array( $this, 'create_custom_post_type' ) );
 			// filter custom post type messages
@@ -64,9 +64,9 @@ if ( !class_exists( 'WPSimpleShop' ) ) {
 		* @since 0.1
 		* @return WPSimpleShop instance
 		*/
-		public static function instance() {
+		public static function instance(){
 
-			if ( null == self::$instance ) {
+			if( null == self::$instance ){
 				self::$instance = new self;
 			}
 
@@ -78,7 +78,7 @@ if ( !class_exists( 'WPSimpleShop' ) ) {
 		*
 		* @since 0.1
 		*/
-		public function create_custom_post_type() {
+		public function create_custom_post_type(){
 
 			$labels = array(
 				'name'					=> 'Produkty',
@@ -159,7 +159,7 @@ if ( !class_exists( 'WPSimpleShop' ) ) {
 		*
 		* @since 0.1
 		*/
-		public function cpt_updated_messages( $messages ) {
+		public function cpt_updated_messages( $messages ){
 			$post = get_post();
 			$post_type = get_post_type( $post );
 			$post_type_object = get_post_type_object( $post_type );
@@ -180,7 +180,7 @@ if ( !class_exists( 'WPSimpleShop' ) ) {
 				10 => 'Szkic produktu zaktualizowany.'
 			);
 
-			if ( $post_type_object->publicly_queryable ) {
+			if( $post_type_object->publicly_queryable ){
 				$permalink = get_permalink( $post->ID );
 
 				$view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), 'Wyświetl Produkt' );
